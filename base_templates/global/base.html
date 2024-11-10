@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        {% include 'recipes/partials/head.html' %}
+        <title>{% block title %}{% endblock title %}Recipes</title>
+    </head>
+
+    <body>
+        {% comment %} {% include 'global/partials/menu.html' %} {% endcomment %}
+        {% include 'recipes/partials/header.html' %}
+        {% if is_detail_page is not True%}
+            {% include 'recipes/partials/search.html' %}
+        {%endif%}
+
+        <main class="main-content-container">
+            {% block content %}{% endblock content %}
+            {% comment %} {% include 'global/partials/pagination.html' %} {% endcomment %}
+        </main>
+
+        {% include 'recipes/partials/footer.html' %}
+
+        {% comment %} <script src="{% static 'global/js/scripts.js' %}"></script> {% endcomment %}
+    </body>
+
+</html>

@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "recipes"
+version = "0.1.0"
+description = "recipes"
+authors = ["Maurício Sousa"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django-restframework = "^0.0.1"
+django = "^5.1.2"
+faker = "^30.8.1"
+pillow = "^11.0.0"
+flake8 = "^7.1.1"
+pytest-watch = "^4.2.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
