@@ -13,6 +13,8 @@ faker = "^30.8.1"
 pillow = "^11.0.0"
 flake8 = "^7.1.1"
 pytest-watch = "^4.2.0"
+pytest = "^8.3.3"
+pytest-django = "^4.9.0"
 
 
 [build-system]
