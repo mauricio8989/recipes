@@ -22,3 +22,30 @@ class RecipesSearchViewsTest(RecipeTestBase):
         url = reverse('recipes:search') + '?q=Test'
         response = self.client.get(url)
         self.assertIn('Search for &quot;Test&quot;', response.content.decode('utf-8'))  # noqa: E501
+
+    def test_recipe_searche_can_find_recipes_by_title(self):
+        title1 = 'Tis is the recipe one'
+        title2 = 'Tis is the recipe two'
+        recipe1 = self.make_recipe(
+            title=title1,
+            slug=title1,
+            author_data={'username': title1}
+        )
+        recipe2 = self.make_recipe(
+            title=title2,
+            slug=title2,
+            author_data={'username': title2}
+        )
+        url_search = reverse('recipes:search')
+        response1 = self.client.get(f'{url_search}?q={title1}')
+        response2 = self.client.get(f'{url_search}?q={title2}')
+        response_both = self.client.get(f'{url_search}?q=Tis')
+
+        self.assertIn(recipe1, response1.context['recipes'])
+        self.assertNotIn(recipe2, response1.context['recipes'])
+
+        self.assertIn(recipe2, response2.context['recipes'])
+        self.assertNotIn(recipe1, response2.context['recipes'])
+
+        self.assertIn(recipe1, response_both.context['recipes'])
+        self.assertIn(recipe2, response_both.context['recipes'])
