@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from .models import Recipe
 
@@ -25,3 +26,22 @@ def recipe(request, id):
         "recipe": recipe,
         "title": f"{recipe.title}",
         "is_detail_page": True})
+
+
+def search(request):
+    search_item = request.GET.get('q', '').strip()
+    recipes = Recipe.objects.filter(
+        Q(
+            Q(title__icontains=search_item) |
+            Q(description__icontains=search_item)
+        ),
+        is_published=True,
+        ).order_by("-id")  # noqa: E501
+    if not search_item:
+        return render(request, 'recipes/pages/404.html', status=404)
+    else:
+        return render(request, 'recipes/pages/search.html', {
+            'page_title': f'Search for "{search_item}"',
+            'search_term': search_item,
+            'recipes': recipes,
+        })
