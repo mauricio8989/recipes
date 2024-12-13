@@ -1,12 +1,17 @@
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from .models import Recipe
+from django.core.paginator import Paginator
 
 
 def home(request):
     recipes = Recipe.objects.filter(is_published=True).order_by("-id")
+
+    current_page = request.GET.get('page', 1)
+    paginator = Paginator(recipes, 9)  # Show 10 recipes per page.
+    page_object = paginator.get_page(current_page)
     return render(request, 'recipes/pages/home.html', context={
-        "recipes": recipes})
+        "recipes": page_object})
 
 
 def category(request, category_id):
