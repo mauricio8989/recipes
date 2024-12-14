@@ -1,8 +1,6 @@
 import math
 from django.core.paginator import Paginator
 
-from django.core.paginator import Paginator
-
 # python -c
 # "import string as s;from random import SystemRandom as
 # sr;print(''.join(sr().choices(s.ascii_letters +
