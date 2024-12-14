@@ -4,7 +4,9 @@ from .models import Recipe
 from django.core.paginator import Paginator
 from utils.pagination import make_pagination_range
 
-PER_PAGE = 9
+import os
+
+PER_PAGE = int(os.environ.get('PER_PAGE', 9))
 
 
 def home(request):

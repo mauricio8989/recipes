@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
-        {% include 'recipes/partials/head.html' %}
+        {% include 'global/partials/head.html' %}
         <title>{% block title %}{% endblock title %}Recipes</title>
     </head>
 
     <body>
         {% comment %} {% include 'global/partials/menu.html' %} {% endcomment %}
-        {% include 'recipes/partials/header.html' %}
+        {% include 'global/partials/header.html' %}
         {% if is_detail_page is not True%}
-            {% include 'recipes/partials/search.html' %}
+            {% include 'global/partials/search.html' %}
         {%endif%}
 
         <main class="main-content-container">
@@ -17,9 +17,9 @@
             {% comment %} {% include 'global/partials/pagination.html' %} {% endcomment %}
         </main>
 
-        {% include 'recipes/partials/paginator.html' %}
+        {% include 'global/partials/paginator.html' %}
 
-        {% include 'recipes/partials/footer.html' %}
+        {% include 'global/partials/footer.html' %}
 
         {% comment %} <script src="{% static 'global/js/scripts.js' %}"></script> {% endcomment %}
     </body>
